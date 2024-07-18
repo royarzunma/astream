@@ -1,0 +1,71 @@
+<icecast>
+
+    <location>Earth</location>
+    <admin>icemaster@localhost</admin>
+
+    <limits>
+        <clients>100</clients>
+        <sources>1</sources>
+        <queue-size>524288</queue-size>
+        <client-timeout>30</client-timeout>
+        <header-timeout>15</header-timeout>
+        <source-timeout>10</source-timeout>
+
+        <burst-on-connect>1</burst-on-connect>
+        <burst-size>65535</burst-size>
+    </limits>
+
+    <authentication>
+        <!-- Sources log in with username 'source' -->
+        <source-password>cambiame</source-password>
+        <!-- Relays log in with username 'relay' -->
+        <relay-password>cambiame</relay-password>
+
+        <!-- Admin logs in with the username given below -->
+        <admin-user>admin</admin-user>
+        <admin-password>cambiame</admin-password>
+    </authentication>
+
+
+    <hostname>localhost</hostname>
+
+    <listen-socket>
+        <port>8000</port>
+        <ssl>1</ssl>
+
+    </listen-socket>
+
+    <http-headers>
+        <header name="Access-Control-Allow-Origin" value="*" />
+    </http-headers>
+
+
+    <fileserve>1</fileserve>
+
+    <paths>
+        <!-- basedir is only used if chroot is enabled -->
+        <basedir>/usr/share/icecast2</basedir>
+
+        <logdir>/var/log/icecast2</logdir>
+        <webroot>/usr/share/icecast2/web</webroot>
+        <adminroot>/usr/share/icecast2/admin</adminroot>
+
+        <alias source="/" destination="/status.xsl"/>
+
+        <ssl-certificate>/etc/icecast2/bundle.pem</ssl-certificate>
+
+        </paths>
+          
+    <logging>
+        <accesslog>access.log</accesslog>
+        <errorlog>error.log</errorlog>
+        <loglevel>3</loglevel> <!-- 4 Debug, 3 Info, 2 Warn, 1 Error -->
+        <logsize>10000</logsize> <!-- Max size of a logfile -->
+
+    </logging>
+
+    <security>
+        <chroot>0</chroot>
+
+    </security>
+</icecast>
