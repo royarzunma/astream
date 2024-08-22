@@ -5,6 +5,7 @@ do
     echo "MENU SCRIPT V.1"
     echo "1. Instalar Icecast con Snapd y Certbot (FULL)"
     echo "2. Solo instalar Icecast2 con SSL ya Instalados."
+    echo "3. Solo instalar Icecast2 sin SSL (Servidor de Prueba local o Virtual)."
     echo "Escoge opcion: "
     read opcion
     case $opcion in
@@ -50,6 +51,23 @@ do
             clear
             sudo cat /etc/letsencrypt/live/$dominio/fullchain.pem /etc/letsencrypt/live/$dominio/privkey.pem > /etc/icecast2/bundle.pem
             sudo systemctl restart icecast2.service
+            break
+            ;;
+
+        3)
+
+            echo "Ahora continuaremos con la instalacion de Certificados SSL"
+            sleep 5
+            sudo apt update && sudo apt upgrade -y
+            sudo apt install icecast2 -y
+            clear
+            sudo systemctl enable icecast2.service
+            clear
+            echo "Ahora tienes que cambiar las contraseñas del XML"
+            sleep 5
+            sudo nano /etc/icecast2/icecast.xml
+            sudo systemctl restart icecast2.service
+            clear
             break
             ;;
 
