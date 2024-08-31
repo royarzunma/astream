@@ -55,9 +55,6 @@ do
             ;;
 
         3)
-
-            echo "Ahora continuaremos con la instalacion de Certificados SSL"
-            sleep 5
             sudo apt update && sudo apt upgrade -y
             sudo apt install icecast2 -y
             clear
